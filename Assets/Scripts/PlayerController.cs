@@ -4,10 +4,13 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	//float smooth = 0.05f; // used for camera lerp
+	//public Image damage_image; 
+	//public float flash_speed = 5f;
+
 
 	Slider[] UI_sliders;
 	Text[] UI_texts;
-
+	//Image[] UI_images;
 	int playerOnLevel; // Current level player is on
 	public GameObject HUD;
 	public Slider Health_UI;
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	bool running;
 	new public GameObject camera;
 	new public GameObject health_bar;
+	//public Color flash_colour = new Color (1f, 0f, 0f, 0.1f);
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("Caller: " + this.gameObject);
@@ -42,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 		//Health_UI = HUD.gameObject.GetComponentInChildren<Slider> ();
 		UI_sliders = HUD.gameObject.GetComponentsInChildren<Slider> (); // UI_sliders[0] = health; [1] = armor
 		UI_texts = HUD.gameObject.GetComponentsInChildren<Text> (); // UI_texts[0] = Level;, 1 = HP, 2 = Armor
-
+		//UI_images = HUD.gameObject.GetComponentsInChildren<Image>(); //
 		//
 		camera = GameObject.FindGameObjectWithTag ("MainCamera");
 		//health_slider = GameObject.FindGameObjectWithTag ("health_slider") as Slider;
@@ -57,7 +61,8 @@ public class PlayerController : MonoBehaviour {
 		//health_slider.value = current_health;
 		// Health_UI.value = current_health;
 		current_armor = start_armor;
-		UI_sliders [1].value = current_armor; 
+		//UI_sliders [0].value = current_health;
+		//UI_sliders [1].value = current_armor; 
 
 		UI_texts [0].fontSize = 64;
 		UI_texts [0].color = Color.white;
@@ -216,6 +221,8 @@ public class PlayerController : MonoBehaviour {
 			change_Armor (damage);
 		} 
 		else {
+			//UI_images [0].color = flash_colour;
+			//damage_image.color = flash_colour;
 			change_HP (damage);
 		}
 	}
